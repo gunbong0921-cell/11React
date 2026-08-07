@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import TopNavi from './components/TopNavi';
 import Lifecycle from './components/Lifecycle';
 import LocalJsonFetcher from './components/LocalJsonFetcher';
-//import ExternalJsonFetcher from './components/ExternalJsonFetcher';
+import ExternalApiFetcher from './components/ExternalApiFetcher';
 
 function App() {
 
@@ -12,7 +12,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Lifecycle />} />
       <Route path="/local" element={<LocalJsonFetcher />} />
-      {/* <Route path="/external" element={<ExternalJsonFetcher />} /> */}
+      <Route path="/external" element={<ExternalApiFetcher />} />
     </Routes>
     </>)
 }
