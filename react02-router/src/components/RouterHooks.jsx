@@ -44,6 +44,7 @@ const RouterHooks = () => {
     let pageTemp = (pageNum===null || isNaN(pageNum)) ? 1 : parseInt(pageNum) + 1;
     //페이지번호는 1~10 사이로 고정한다.
     if (pageTemp > 10) pageTemp = 10;
+    if (pageTemp === 10) alert('마지막페이지입니다.');
     //mode는 고정된 상태에서 pageNum만 변경한다.
     setSearchParams({ mode, pageNum: pageTemp });
   }
@@ -52,6 +53,7 @@ const RouterHooks = () => {
     let pageTemp = (pageNum===null || isNaN(pageNum)) ? 1 : parseInt(pageNum) - 1;
     //페이지번호는 1~10 사이로 고정한다. (음수 방지)
     if (pageTemp < 1) pageTemp = 1;
+    if (pageTemp === 1) alert('첫번째페이지입니다.');
     setSearchParams({ mode, pageNum: pageTemp });
   }
   return (
