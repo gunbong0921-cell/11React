@@ -5,7 +5,7 @@ const TopNavi = () => {
     <nav>
       <NavLink to="/">수명주기</NavLink>&nbsp;
       <NavLink to="/local">내부주기</NavLink>&nbsp;
-      <Link to="/external">외부주기</Link>&nbsp;
+      <NavLink to="/external">외부주기</NavLink>&nbsp;
     </nav>
   );
 }
