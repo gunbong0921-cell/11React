@@ -36,13 +36,16 @@ function View() {
         <Link to="/list">목록</Link>&nbsp;
         <Link to={'/edit/' + params.idx}>수정</Link>&nbsp;
         <Link onClick={() => {
+          //삭제여부질문 
           event.preventDefault();
           if (window.confirm('삭제하시겠습니까?')) {
+            //삭제 API를 post방식으로 요청 
             fetch('http://nakja.co.kr/APIs/php7/boardDeleteJSON.php', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
               },
+              //삭제이므로 게시물의 일련번호만 전송 
               body: new URLSearchParams({
                 tname: 'board_apis',
                 idx: params.idx,
@@ -53,6 +56,7 @@ function View() {
               return result.json();
             })
             .then((json) => {
+              //삭제에 성공인 경우 경고창을 띄우고 목록으로 이동 
               if (json.result === 'success') {
                 alert('삭제되었습니다.');
                 navigate('/list');
