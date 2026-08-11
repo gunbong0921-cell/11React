@@ -13,6 +13,7 @@ const InputField = ({ label, name, autoFocus = false }) => {
       document.getElementById(id).focus();
     }
   }, []);
+  //반배열을 부여했으므로 딱 한번만 실행하면 된다.
 
   return (
     <>
@@ -26,6 +27,8 @@ const MyForm = () => {
   const commonId = useId();
   return (
     <div>
+      {/* 컴포넌트를 이용해서 여러개의 Input요소를 편리하게 추가할 수 있다. 랜더링이 되면 아이디
+      입력상자에 자동으로 포커싱된다. */}
       <InputField label="아이디" name="id" autoFocus />
       <InputField label="이름" name="name" /><br />
       성별
