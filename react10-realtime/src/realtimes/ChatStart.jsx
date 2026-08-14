@@ -14,7 +14,8 @@ const ChatStart = () => {
     /**
     useref() 훅으로 생성한 변수는 {current:값} 과 같은 형태의 객체로 생성되므로 아래와 같이 사용해야한다.
      */
-    window.open(`/chat/talk?roomId=${encodeURIComponent(refRoom.current.value)}&userId=${encodeURIComponent(refId.current.value)}`, '', 'width=400,height=500');
+    const talkUrl = `${window.location.origin}${window.location.pathname}#/chat/talk?roomId=${encodeURIComponent(refRoom.current.value)}&userId=${encodeURIComponent(refId.current.value)}`;
+    window.open(talkUrl, '', 'width=400,height=500');
     //대화명은 지운다. 
     refId.current.value = '';
   }
