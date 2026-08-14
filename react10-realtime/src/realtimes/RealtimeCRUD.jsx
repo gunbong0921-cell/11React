@@ -39,25 +39,37 @@ function RealtimeCRUD() {
     });
   }
 
+  //데이터 수정
   function editUserData(userId, userName, userPass) {
+    //고유키 생성 
     const newPostKey = push(child(ref(realtime), 'tempValue')).key;
+    //수정할 데이터 객체 생성 
     const postData = {
       name: userName,
       pass: userPass,
       fireKey: newPostKey,
     };
+    //빈 객체를 생성
     const updates = {};
+    //객체에 수정할 데이터를 key-value 형식으로 추가 
     updates['/users/' + userId] = postData;
+    //수정함수 실행. 기존 데이터 뒤에 'edit' 붙여서 실행
     return update(ref(realtime), updates);
   }
 
+  //삭제1
   function deleteUserData1(userId) {
+    //빈 객체를 생성 
     const deletes = {};
+    //객체에 삭제할 데이터를 key-value 형식으로 추가 
     deletes['/users/' + userId] = null;
+    //수정을 위한 함수지만 Value가 null이므로 삭제처리한다. 
     return update(ref(realtime), deletes);
   }
 
+  //삭제2
   function deleteUserData2(userId) {
+    //remove() 함수를 통해 데이터 삭제. user 노드 하위의 아이디를 지정한다. 
     remove(ref(realtime, 'users/' + userId))
     .then(() => {
       console.log('삭제성공');
@@ -79,6 +91,7 @@ function RealtimeCRUD() {
     <input type="number" value={addNum} onChange={(e) => setAddNum(e.target.value)} />
     <input type="button" value="입력" onClick={() => writeUserData(id, name, pass)} />
     <input type="button" value="읽기" onClick={() => readUserData(id)} />
+    {/* 수정 시에는 기존 문자열에 'edit'를 추가해서 인수로 전달 */}
     <input type="button" value="수정" onClick={() => editUserData(id, name+'edit', pass+'edit')} />
     <input type="button" value="삭제1" onClick={() => deleteUserData1(id)} />
     <input type="button" value="삭제2" onClick={() => deleteUserData2(id)} />
